@@ -1,0 +1,25 @@
+{
+  "family": "sample-service",
+  "containerDefinitions": [
+    {
+      "name": "sample-service",
+      "image": "rkneufeld/sample-service:simple",
+      "cpu": 512,
+      "memory": 500,
+      "entryPoint": [],
+      "environment": [],
+      "command": [],
+      "portMappings": [
+        {
+          "hostPort": 8080,
+          "containerPort": 8080
+        }
+      ],
+      "volumesFrom": [],
+      "links": [],
+      "mountPoints": [],
+      "essential": true
+    }
+  ],
+  "volumes": []
+}

@@ -1,0 +1,16 @@
+{
+  "name": "sample-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A sample service for O'Reilly's Docker on AWS video",
+  "author": "Ryan Neufeld <ryan@rkn.io>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.12.3",
+    "morgan": "1.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rkneufeld/docker-on-aws.git"
+  }
+}
