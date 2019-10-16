@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build --tag rkneufeld/sample-service:simple .
+docker build --tag hodei/sample-service:simple .
