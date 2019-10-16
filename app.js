@@ -1,8 +1,8 @@
-/* A simple web service for O'Reilly's Docker on AWS video series
+/* A simple web service for Hodei demos
+/* Based on rkneufeld sample service for O'Reilly
  *
  * This service exposes four endpoints:
- * - GET /        - Returns 200 with JSON body containing the current service
- *                  count.
+ * - GET /        - Returns 200 with JSON body containing the current service count.
  * - GET /version - Returns JSON describing the service version.
  * - PUT /inc     - Increment the service count. Returns 204.
  * - PUT /dec     - Decrement the service count. Returns 204.
