@@ -8,5 +8,5 @@ docker run --tty \
            --rm \
            --publish 8080:8080 \
            --name "sample-service" \
-           rkneufeld/sample-service:simple
+           hodei/sample-service:simple
 
