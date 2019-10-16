@@ -1,4 +1,4 @@
-FROM node:0.12.1-slim
+FROM node:8-jessie-slim
 
 EXPOSE 8080
 
