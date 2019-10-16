@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "sample-service",
-      "image": "rkneufeld/sample-service:simple",
+      "image": "hodei/sample-service:simple",
       "cpu": 512,
       "memory": 500,
       "entryPoint": [],
