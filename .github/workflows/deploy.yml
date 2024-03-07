@@ -39,7 +39,7 @@ jobs:
         run: $GITHUB_WORKSPACE/.github/scripts/build.sh
 
       - name: Upload Artifact to s3
-        run: aws s3 cp *.js s3://${{ env.S3BUCKET }}/
+        run: aws s3 cp . s3://${{ env.S3BUCKET }}/ --recursive --include "*.js"
         
   deploy:
     needs: build
