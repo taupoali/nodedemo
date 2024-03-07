@@ -2,5 +2,5 @@
 set -xe
 
 npm install --save
-node app.js
+forever start /usr/local/webapp/app.js
 
