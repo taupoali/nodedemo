@@ -2,4 +2,4 @@ version: 0.0
 os: linux
 files:
   - source: /aws
-    destination: /usr/local/codedeployresources
+    destination: /usr/local/webapp
