@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  applicationfolder: spring-boot-hello-world-example
+  applicationfolder: nodedemo
   AWS_REGION: eu-west-1
   S3BUCKET: hodei-nodedemodeploy 
 
