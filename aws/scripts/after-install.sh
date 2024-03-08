@@ -10,4 +10,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # nvm install --lts
 
+cd /usr/local/webapp
 npm install --save
