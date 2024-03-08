@@ -28,10 +28,7 @@ jobs:
 
       - name: chmod
         run: chmod -R +x ./.github
-
-      - name: Upload Artifact to s3
-        run: aws s3 cp . s3://${{ env.S3BUCKET }}/ --recursive --include "*.js" --include "*.json" --include "*.sh"
-        
+   
   deploy:
     needs: build
     runs-on: ubuntu-latest
