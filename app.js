@@ -1,6 +1,6 @@
 /* A simple web service for Hodei demos
-/* Based on rkneufeld sample service for O'Reilly
- *
+/* Based on rkneufeld 
+*
  * This service exposes four endpoints:
  * - GET /        - Returns 200 with JSON body containing the current service count.
  * - GET /version - Returns JSON describing the service version.
