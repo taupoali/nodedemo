@@ -6,8 +6,12 @@
   "author": "Ryan Neufeld <ryan@rkn.io>",
   "license": "MIT",
   "dependencies": {
+    "cypress": "^13.7.2",
     "express": "^4.18.2",
     "morgan": "^1.10.0"
+  },
+  "scripts": {
+    "test:cypress": "cypress run --spec cypress/e2e/api.cy.js"
   },
   "repository": {
     "type": "git",
