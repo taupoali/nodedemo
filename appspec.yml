@@ -6,7 +6,7 @@ files:
 hooks:
   AfterInstall:
     - location: aws/scripts/after-install.sh
-      timeout: 320
+      timeout: 325
       runas: root
   ApplicationStart:
     - location: aws/scripts/application-start.sh
