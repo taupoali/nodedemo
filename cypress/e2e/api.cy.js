@@ -23,7 +23,7 @@ describe('API Test Fetch of Counter', () => {
         })
     })
 
-    it('test the counter decreased', () => {
+    it('should decrement the counter', () => {
       cy.request('PUT', '/dec')
         .then((response) => {
           expect(response.status).to.equal(204)
