@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "cypress": "^13.7.2",
-    "express": "^4.21.2",
+    "express": "^4.22.1",
     "morgan": "^1.10.1"
   },
   "scripts": {
