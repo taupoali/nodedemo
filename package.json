@@ -6,9 +6,11 @@
   "author": "Ryan Neufeld <ryan@rkn.io>",
   "license": "MIT",
   "dependencies": {
-    "cypress": "^13.7.2",
     "express": "^4.22.1",
     "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "cypress": "^13.7.2"
   },
   "scripts": {
     "start": "node app.js",

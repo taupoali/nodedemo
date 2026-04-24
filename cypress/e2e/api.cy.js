@@ -1,5 +1,9 @@
 
 describe('API Test Fetch of Counter', () => {
+    beforeEach(() => {
+      cy.request('PUT', '/reset')
+    })
+
     it('should successfully retrieve count data', () => {
       cy.request('GET', '/')
         .then((response) => {
@@ -13,9 +17,7 @@ describe('API Test Fetch of Counter', () => {
         .then((response) => {
           expect(response.status).to.equal(204)
         })
-    })
 
-    it('test the counter increased', () => {
       cy.request('GET', '/')
         .then((response) => {
           expect(response.status).to.equal(200)
@@ -28,9 +30,21 @@ describe('API Test Fetch of Counter', () => {
         .then((response) => {
           expect(response.status).to.equal(204)
         })
+
+      cy.request('GET', '/')
+        .then((response) => {
+          expect(response.status).to.equal(200)
+          expect(response.body.count).to.equal(-1)
+        })
     })
 
-    it('test the counter decreased', () => {
+    it('should reset the counter', () => {
+      cy.request('PUT', '/inc')
+      cy.request('PUT', '/reset')
+        .then((response) => {
+          expect(response.status).to.equal(204)
+        })
+
       cy.request('GET', '/')
         .then((response) => {
           expect(response.status).to.equal(200)
