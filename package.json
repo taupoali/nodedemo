@@ -10,7 +10,7 @@
     "morgan": "^1.10.1"
   },
   "devDependencies": {
-    "cypress": "^13.7.2"
+    "cypress": "^15.15.0"
   },
   "scripts": {
     "start": "node app.js",
