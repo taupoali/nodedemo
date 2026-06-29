@@ -9,6 +9,8 @@
 
 const express = require('express');
 const morgan = require('morgan');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 
 /* Use the PORT environment variable if set, otherwise default to 8080.
  * This is a common Node.js pattern that makes the app flexible across environments. */
@@ -19,6 +21,21 @@ const PORT = process.env.PORT || 8080;
 let count = 0;
 
 const app = express();
+
+/* Disable the X-Powered-By header to avoid revealing the framework. */
+app.disable('x-powered-by');
+
+/* Helmet sets various HTTP security headers (Content-Security-Policy, etc.). */
+app.use(helmet());
+
+/* Rate-limit all requests: max 100 requests per 15-minute window per IP. */
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use(limiter);
 
 /* Morgan logs each HTTP request, including the method, URL, and response status. */
 app.use(morgan('[:date[iso]] :method :url\t:status'));
