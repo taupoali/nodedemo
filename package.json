@@ -10,10 +10,13 @@
     "morgan": "^1.10.1"
   },
   "devDependencies": {
-    "cypress": "^13.7.2"
+    "cypress": "^13.7.2",
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
   },
   "scripts": {
     "start": "node app.js",
+    "test": "jest --coverage",
     "test:cypress": "cypress run --spec cypress/e2e/api.cy.js"
   },
   "repository": {
