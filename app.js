@@ -23,25 +23,22 @@ const app = express();
 /* Morgan logs each HTTP request, including the method, URL, and response status. */
 app.use(morgan('[:date[iso]] :method :url\t:status'));
 
+/* Wraps a counter mutation so every PUT route returns 204 consistently. */
+function counterAction(updateFn) {
+  return function (req, res) {
+    updateFn();
+    res.status(204).end();
+  };
+}
+
 /* req is the request from the client. res is the response we send back. */
 app.get('/', function (req, res) {
   res.status(200).json({ count });
 });
 
-app.put('/inc', function (req, res) {
-  count += 1;
-  res.status(204).end(); // 204 = success, no content to return
-});
-
-app.put('/dec', function (req, res) {
-  count -= 1;
-  res.status(204).end(); // 204 = success, no content to return
-});
-
-app.put('/reset', function (req, res) {
-  count = 0;
-  res.status(204).end(); // 204 = success, no content to return
-});
+app.put('/inc', counterAction(() => { count += 1; }));
+app.put('/dec', counterAction(() => { count -= 1; }));
+app.put('/reset', counterAction(() => { count = 0; }));
 
 /* If a request doesn't match any route above, it ends up here.
  * Without this, Express would send a confusing HTML page.

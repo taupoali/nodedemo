@@ -1,4 +1,5 @@
 #!/bin/bash
 set -xe
 
-docker build --tag hodei/sample-service:simple .
+# Delegate to the canonical build script at the repo root.
+"$(git rev-parse --show-toplevel)/build.sh"

@@ -1,7 +1,7 @@
 
 describe('API Test Fetch of Counter', () => {
     beforeEach(() => {
-      cy.request('PUT', '/reset')
+      cy.putAction('/reset')
     })
 
     it('should successfully retrieve count data', () => {
@@ -13,43 +13,19 @@ describe('API Test Fetch of Counter', () => {
     })
 
     it('should increment the counter', () => {
-      cy.request('PUT', '/inc')
-        .then((response) => {
-          expect(response.status).to.equal(204)
-        })
-
-      cy.request('GET', '/')
-        .then((response) => {
-          expect(response.status).to.equal(200)
-          expect(response.body.count).to.equal(1)
-        })
+      cy.putAction('/inc')
+      cy.expectCount(1)
     })
 
     it('should decrement the counter', () => {
-      cy.request('PUT', '/dec')
-        .then((response) => {
-          expect(response.status).to.equal(204)
-        })
-
-      cy.request('GET', '/')
-        .then((response) => {
-          expect(response.status).to.equal(200)
-          expect(response.body.count).to.equal(-1)
-        })
+      cy.putAction('/dec')
+      cy.expectCount(-1)
     })
 
     it('should reset the counter', () => {
-      cy.request('PUT', '/inc')
-      cy.request('PUT', '/reset')
-        .then((response) => {
-          expect(response.status).to.equal(204)
-        })
-
-      cy.request('GET', '/')
-        .then((response) => {
-          expect(response.status).to.equal(200)
-          expect(response.body.count).to.equal(0)
-        })
+      cy.putAction('/inc')
+      cy.putAction('/reset')
+      cy.expectCount(0)
     })
 
   })
