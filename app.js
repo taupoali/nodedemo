@@ -43,6 +43,13 @@ app.put('/reset', function (req, res) {
   res.status(204).end(); // 204 = success, no content to return
 });
 
-app.listen(PORT, function () {
-  console.log('Running on http://localhost:' + PORT);
-});
+/* When this file is run directly (node app.js), start listening.
+ * When required as a module (e.g. by tests), just export the app. */
+if (require.main === module) {
+  app.listen(PORT, function () {
+    console.log('Running on http://localhost:' + PORT);
+  });
+}
+
+module.exports = app;
+module.exports.resetCount = function () { count = 0; };
