@@ -43,13 +43,44 @@ app.put('/reset', function (req, res) {
   res.status(204).end(); // 204 = success, no content to return
 });
 
+/* Return 404 JSON for any undefined route instead of Express's default HTML page. */
+app.use(function (req, res) {
+  res.status(404).json({ error: 'Not Found' });
+});
+
+/* Centralized error-handling middleware. Express recognises this by its four-parameter
+ * signature - it catches any error thrown or passed via next(err) in route handlers. */
+app.use(function (err, req, res, next) {
+  console.error('Unhandled error on %s %s:', req.method, req.url, err);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
+
 /* When this file is run directly (node app.js), start listening.
  * When required as a module (e.g. by tests), just export the app. */
 if (require.main === module) {
-  app.listen(PORT, function () {
+  const server = app.listen(PORT, function () {
     console.log('Running on http://localhost:' + PORT);
   });
+
+  server.on('error', function (err) {
+    if (err.code === 'EADDRINUSE') {
+      console.error('Error: Port %d is already in use.', PORT);
+    } else {
+      console.error('Server failed to start:', err.message);
+    }
+    process.exit(1);
+  });
 }
+
+process.on('uncaughtException', function (err) {
+  console.error('Uncaught exception:', err);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', function (reason) {
+  console.error('Unhandled promise rejection:', reason);
+  process.exit(1);
+});
 
 module.exports = app;
 module.exports.resetCount = function () { count = 0; };

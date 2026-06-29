@@ -5,10 +5,22 @@ set -xe
 # source ~/.bashrc
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if [ ! -s "$NVM_DIR/nvm.sh" ]; then
+  echo "Error: nvm is not installed at $NVM_DIR/nvm.sh" >&2
+  exit 1
+fi
+
+\. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # nvm install --lts
 
 cd /usr/local/webapp
+
+if [ ! -f "package.json" ]; then
+  echo "Error: package.json not found in /usr/local/webapp" >&2
+  exit 1
+fi
+
 npm install --save
