@@ -23,7 +23,11 @@ const app = express();
 /* Morgan logs each HTTP request, including the method, URL, and response status. */
 app.use(morgan('[:date[iso]] :method :url\t:status'));
 
-/* Wraps a counter mutation so every PUT route returns 204 consistently. */
+/* counterAction is a "higher-order function" — a function that returns another
+ * function. This is a common JavaScript pattern for removing duplication.
+ * Each PUT route needs to (1) update the count and (2) send a 204 response.
+ * Instead of writing that logic three times, we write it once here and pass
+ * in just the part that differs: the update step. */
 function counterAction(updateFn) {
   return function (req, res) {
     updateFn();
@@ -36,6 +40,9 @@ app.get('/', function (req, res) {
   res.status(200).json({ count });
 });
 
+/* Each route below uses counterAction (defined above) with an arrow function
+ * that describes what to change. The arrow function () => { count += 1 } is
+ * shorthand for function () { count += 1 }. */
 app.put('/inc', counterAction(() => { count += 1; }));
 app.put('/dec', counterAction(() => { count -= 1; }));
 app.put('/reset', counterAction(() => { count = 0; }));
